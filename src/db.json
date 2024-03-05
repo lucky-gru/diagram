@@ -1,0 +1,100 @@
+{
+  "level": -1,
+  "children": [
+    {
+      "level": 0,
+      "children": [
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [],
+                  "content": {
+                    "pos": "adjective",
+                    "word": "רְשָׁעִ֑ים",
+                    "gloss": "wicked",
+                    "description": ""
+                  },
+                  "drawUnit": {
+                    "width": 83.85416793823242,
+                    "height": 50,
+                    "element": {
+                      "_groups": [[{}]],
+                      "_parents": [null]
+                    },
+                    "verticalStart": 0,
+                    "verticalCenter": 50,
+                    "verticalEnd": 50,
+                    "herizontalStart": 0,
+                    "herizontalCenter": 41.92708396911621,
+                    "herizontalEnd": 83.85416793823242
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "conjunction",
+                        "word": "וָ",
+                        "gloss": "and",
+                        "description": ""
+                      },
+                      "drawUnit": {
+                        "width": 62.8125,
+                        "height": 50,
+                        "element": {
+                          "_groups": [[{}]],
+                          "_parents": [null]
+                        },
+                        "verticalStart": 0,
+                        "verticalCenter": 50,
+                        "verticalEnd": 50,
+                        "herizontalStart": 0,
+                        "herizontalCenter": 31.40625,
+                        "herizontalEnd": 62.8125
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Conjunction",
+                    "description": ""
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [],
+                  "content": {
+                    "pos": "adjective",
+                    "word": "רְשָׁעִ֑ים",
+                    "gloss": "wicked",
+                    "description": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Adjectival",
+                "description": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "compound adjective"
+          }
+        }
+      ],
+      "content": {
+        "fragment": "DiscourseUnit",
+        "description": "Visual Dictionary"
+      }
+    }
+  ],
+  "content": null
+}
