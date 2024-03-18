@@ -6,31 +6,27 @@ import { settings } from '../settings.js';
 
 import type { DrawUnit, GrammarNode, GraphicalNode } from '../simpleGrammarTypes.js';
 
-export function drawRelativeParticle(
+export const drawClauseConjunction = (
   node: GrammarNode | GraphicalNode,
-  moreHeight: number
-): DrawUnit {
+  basicHeight: number
+): DrawUnit => {
   const d3Elem = d3.create('svg:g');
 
   if (!node.content || !isWord(node.content)) {
-    throw new Error('SubordinateConjunctionDrawer Only draw Word');
+    throw new Error('WordDrawer Only draw Word');
   }
 
   const rect1 = ruler(node.content.word);
   const rect2 = ruler(node.content.gloss);
 
-  const width = settings.height + settings.wordPadding + rect2.width;
-  const height = settings.height + moreHeight;
+  const maxWordWidth = Math.max(rect1.width, rect2.width);
+
+  const width = maxWordWidth + settings.wordPadding;
+  const height = basicHeight;
 
   const data: [number, number][] = [
-    [0, height],
-    [settings.height, height],
-    [settings.height, 0],
-  ];
-
-  const lineData: [number, number][] = [
-    [0, 0],
     [width, 0],
+    [width, height],
   ];
 
   const lineGenerator = d3
@@ -41,14 +37,7 @@ export function drawRelativeParticle(
   d3Elem
     .append('path')
     .attr('d', lineGenerator(data))
-    .attr('fill', 'none')
     .attr('stroke-dasharray', '3,3')
-    .attr('stroke', settings.strokeColor)
-    .attr('stroke-width', settings.lineStrokeWidth);
-
-  d3Elem
-    .append('path')
-    .attr('d', lineGenerator(lineData))
     .attr('fill', 'none')
     .attr('stroke', settings.strokeColor)
     .attr('stroke-width', settings.lineStrokeWidth);
@@ -61,7 +50,7 @@ export function drawRelativeParticle(
     .attr('fill', settings.wordColor)
     .attr(
       'transform',
-      `translate(${width - rect2.width - rect1.width - 2 * settings.wordPadding}, ${height / 2})`
+      `translate(${maxWordWidth - rect1.width}, ${height / 2 + settings.wordPadding})`
     )
     .text(node.content.word);
 
@@ -71,7 +60,10 @@ export function drawRelativeParticle(
     .attr('y', 0)
     .attr('stroke', settings.glossColor)
     .attr('fill', settings.glossColor)
-    .attr('transform', `translate(${width - rect2.width}, ${height / 2})`)
+    .attr(
+      'transform',
+      `translate(${maxWordWidth - rect2.width}, ${height / 2 - settings.wordPadding})`
+    )
     .text(node.content.gloss);
 
   return {
@@ -79,10 +71,10 @@ export function drawRelativeParticle(
     height,
     element: d3Elem,
     verticalStart: 0,
-    verticalCenter: height,
+    verticalCenter: height / 2,
     verticalEnd: height,
-    horizontalStart: 0,
-    horizontalCenter: width / 2,
+    horizontalStart: width,
+    horizontalCenter: width,
     horizontalEnd: width,
   };
-}
+};

@@ -2,22 +2,25 @@ import * as d3 from 'd3';
 
 import { settings } from '../settings.js';
 
-import type { DrawUnit } from '../simpleGrammarTypes.js';
+import type { DrawUnit, GraphicalNode } from '../simpleGrammarTypes.js';
 
-export function drawAdverbialDecorator(): DrawUnit {
+export const drawObjectPredicateCompoundDecorator = (node: GraphicalNode): DrawUnit => {
   const d3Elem = d3.create('svg:g');
 
-  const width = settings.height / 2;
-  const height = settings.height;
+  const width = node.drawUnit.width;
+  const height = node.drawUnit.verticalEnd - node.drawUnit.verticalStart;
 
-  const lineData: [number, number][] = [
-    [0, 0],
-    [width, 0],
+  const data: [number, number][] = [
+    [2 * settings.padding, 0],
+    [0, height / 2],
+    [2 * settings.padding, height],
   ];
 
-  const slashData: [number, number][] = [
-    [0, height],
+  const lineData: [number, number][] = [
     [width, 0],
+    [2 * settings.padding, 0],
+    [2 * settings.padding, height],
+    [width, height],
   ];
 
   const lineGenerator = d3
@@ -34,9 +37,8 @@ export function drawAdverbialDecorator(): DrawUnit {
 
   d3Elem
     .append('path')
-    .attr('d', lineGenerator(slashData))
+    .attr('d', lineGenerator(data))
     .attr('fill', 'none')
-    .attr('stroke-dasharray', '3,3')
     .attr('stroke', settings.strokeColor)
     .attr('stroke-width', settings.lineStrokeWidth);
 
@@ -48,7 +50,7 @@ export function drawAdverbialDecorator(): DrawUnit {
     verticalCenter: height / 2,
     verticalEnd: height,
     horizontalStart: 0,
-    horizontalCenter: width / 2,
-    horizontalEnd: width,
+    horizontalCenter: settings.padding * 2,
+    horizontalEnd: settings.padding * 2,
   };
-}
+};

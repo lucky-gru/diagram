@@ -14,7 +14,7 @@ import { drawComplementDecorator } from './svgDrawer/drawComplementDecorator';
 import { drawAdjectivalDecorator } from './svgDrawer/drawAdjectivalDecorator';
 import { drawAdjectivalClauseDecorator } from './svgDrawer/drawAdjectivalClauseDecorator';
 
-import { verticalMerge, herizontalMerge } from './svgDrawer/utils';
+import { verticalMerge, horizontalMerge } from './svgDrawer/utils';
 import { drawAdverbialDecorator } from './svgDrawer/drawAdverbialDecorator';
 import { drawObjectClauseDecorator } from './svgDrawer/drawObjectClauseDecorator';
 import { drawConstructChainConnector } from './svgDrawer/drawConstructChainConnector';
@@ -41,7 +41,7 @@ export function drawSampleSvgs(container: HTMLElement) {
   const elements = [
     drawVerbparticipleDecorator(),
     drawPreposition(sampleWord, 200),
-    herizontalMerge([
+    horizontalMerge([
       drawEmptyWord(),
       drawEqualDecorator(),
       drawWord(sampleWord),
@@ -53,9 +53,9 @@ export function drawSampleSvgs(container: HTMLElement) {
       drawWord(sampleWord),
     ]),
     drawObjectClauseDecorator(),
-    herizontalMerge([
+    horizontalMerge([
       verticalMerge([
-        herizontalMerge([
+        horizontalMerge([
           drawWord(sampleWord),
           drawVerticalLine(),
           drawWord(sampleWord),
@@ -68,8 +68,8 @@ export function drawSampleSvgs(container: HTMLElement) {
     ]),
     drawAdverbialDecorator(),
     drawAdjectivalClauseDecorator(),
-    herizontalMerge([
-      herizontalMerge([
+    horizontalMerge([
+      horizontalMerge([
         drawWord(sampleWord),
         drawVerticalLine(),
         drawWord(sampleWord),
@@ -79,8 +79,8 @@ export function drawSampleSvgs(container: HTMLElement) {
       drawAdjectivalClauseDecorator(),
     ]),
     drawAdjectivalDecorator(),
-    herizontalMerge([drawWord(sampleWord), drawAdjectivalDecorator()]),
-    herizontalMerge([
+    horizontalMerge([drawWord(sampleWord), drawAdjectivalDecorator()]),
+    horizontalMerge([
       drawWord(sampleWord),
       drawVerticalLine(),
       drawWord(sampleWord),
@@ -97,14 +97,14 @@ export function drawSampleSvgs(container: HTMLElement) {
     drawVerticalLine(),
     drawComplementDecorator(),
     verticalMerge([drawWord(sampleWord), drawModifier(sampleWord)]),
-    herizontalMerge([
+    horizontalMerge([
       drawModifier(sampleWord),
       drawModifier(sampleWord),
       drawModifier(sampleWord),
     ]),
     verticalMerge([
       drawWord(sampleWord),
-      herizontalMerge([
+      horizontalMerge([
         drawModifier(sampleWord),
         drawModifier(sampleWord),
         drawModifier(sampleWord),
