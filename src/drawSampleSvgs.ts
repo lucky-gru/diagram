@@ -13,8 +13,6 @@ import { drawVerticalLine } from './svgDrawer/drawVerticalLine';
 import { drawComplementDecorator } from './svgDrawer/drawComplementDecorator';
 import { drawAdjectivalDecorator } from './svgDrawer/drawAdjectivalDecorator';
 import { drawAdjectivalClauseDecorator } from './svgDrawer/drawAdjectivalClauseDecorator';
-
-import { verticalMerge, horizontalMerge } from './svgDrawer/utils';
 import { drawAdverbialDecorator } from './svgDrawer/drawAdverbialDecorator';
 import { drawObjectClauseDecorator } from './svgDrawer/drawObjectClauseDecorator';
 import { drawConstructChainConnector } from './svgDrawer/drawConstructChainConnector';
@@ -23,6 +21,14 @@ import { drawPreposition } from './svgDrawer/drawPreposition';
 import { drawVerbparticipleDecorator } from './svgDrawer/drawVerbparticipleDecorator';
 
 import { D3Element } from './simpleGrammarTypes';
+import { drawClauseConjunction } from './svgDrawer/drawClauseConjunction';
+import { drawConjunction } from './svgDrawer/drawConjunction';
+import { drawEmpty } from './svgDrawer/drawEmpty';
+import { drawEmptyConjunction } from './svgDrawer/drawEmptyConjunction';
+import { drawCompoundEndDecorator } from './svgDrawer/drawCompoundEndDecorator';
+import { drawRelativeParticle } from './svgDrawer/drawRelativeParticle';
+import { drawSubjectClauseDecorator } from './svgDrawer/drawSubjectClauseDecorator';
+import { drawVerbInifinitiveDecorator } from './svgDrawer/drawVerbInifinitiveDecorator';
 
 function appendD3Element(container: HTMLElement, element: D3Element) {
   const svg = d3
@@ -39,77 +45,38 @@ function appendD3Element(container: HTMLElement, element: D3Element) {
 
 export function drawSampleSvgs(container: HTMLElement) {
   const elements = [
-    drawVerbparticipleDecorator(),
-    drawPreposition(sampleWord, 200),
-    horizontalMerge([
-      drawEmptyWord(),
-      drawEqualDecorator(),
-      drawWord(sampleWord),
-    ]),
-    drawSubordinateConjunction(sampleWord),
+    drawAdjectivalClauseDecorator(),
+    drawAdjectivalDecorator(),
+    drawAdverbialDecorator(),
+    drawClauseConjunction(sampleWord, 100),
+    drawClauseDecorator(),
+    drawComplementDecorator(),
+    drawConjunction(sampleWord, 200),
     drawConstructChainConnector([
       drawWord(sampleWord),
       drawWord(sampleWord),
       drawWord(sampleWord),
     ]),
-    drawObjectClauseDecorator(),
-    horizontalMerge([
-      verticalMerge([
-        horizontalMerge([
-          drawWord(sampleWord),
-          drawVerticalLine(),
-          drawWord(sampleWord),
-          drawVerticalLine(),
-          drawClauseDecorator(),
-        ]),
-        drawObjectClauseDecorator(),
-      ]),
-      drawWord(sampleWord),
-    ]),
-    drawAdverbialDecorator(),
-    drawAdjectivalClauseDecorator(),
-    horizontalMerge([
-      horizontalMerge([
-        drawWord(sampleWord),
-        drawVerticalLine(),
-        drawWord(sampleWord),
-        drawVerticalLine(),
-        drawClauseDecorator(),
-      ]),
-      drawAdjectivalClauseDecorator(),
-    ]),
-    drawAdjectivalDecorator(),
-    horizontalMerge([drawWord(sampleWord), drawAdjectivalDecorator()]),
-    horizontalMerge([
-      drawWord(sampleWord),
-      drawVerticalLine(),
-      drawWord(sampleWord),
-      drawVerticalLine(),
-      drawClauseDecorator(),
-    ]),
-    drawWord(sampleWord),
-    drawEmptyWord(),
+    drawEmpty(),
+    drawEmptyConjunction(100),
     drawEmptyLine(),
-    drawModifier(sampleWord),
-    drawWhitespaceDecorator(),
+    drawEmptyWord(),
     drawEqualDecorator(),
-    drawClauseDecorator(),
+    drawModifier(sampleWord),
+    drawObjectClauseDecorator(),
+    drawCompoundEndDecorator({
+      ...sampleWord,
+      drawUnit: drawWord(sampleWord),
+    }),
+    drawPreposition(sampleWord, 200),
+    drawRelativeParticle(sampleWord, 200),
+    drawSubjectClauseDecorator(200),
+    drawSubordinateConjunction(sampleWord),
+    drawVerbInifinitiveDecorator(),
+    drawVerbparticipleDecorator(),
     drawVerticalLine(),
-    drawComplementDecorator(),
-    verticalMerge([drawWord(sampleWord), drawModifier(sampleWord)]),
-    horizontalMerge([
-      drawModifier(sampleWord),
-      drawModifier(sampleWord),
-      drawModifier(sampleWord),
-    ]),
-    verticalMerge([
-      drawWord(sampleWord),
-      horizontalMerge([
-        drawModifier(sampleWord),
-        drawModifier(sampleWord),
-        drawModifier(sampleWord),
-      ]),
-    ]),
+    drawWhitespaceDecorator(),
+    drawWord(sampleWord),
   ];
 
   for (const element of elements) {
