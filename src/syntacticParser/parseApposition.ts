@@ -1,9 +1,12 @@
-import { isFragment } from '../utils.js';
+import { isFragment, isWord } from '../utils.js';
 import { GrammarError } from '../error.js';
 import type { GrammarNode, GraphicalNode } from '../simpleGrammarTypes.js';
 
-import { horizontalMerge } from '../svgDrawer/utils.js';
-import { drawEqualDecorator } from '~/svgDrawer/drawEqualDecorator.js';
+import { horizontalMerge, verticalMerge } from '../svgDrawer/utils.js';
+import { drawEqualDecorator } from '../svgDrawer/drawEqualDecorator.js';
+import { drawEmpty } from '../svgDrawer/drawEmpty.js';
+import { drawEmptyLine } from '../svgDrawer/drawEmptyLine.js';
+import { drawWord } from '../svgDrawer/drawWord.js';
 
 export function parseApposition(node: GrammarNode): GraphicalNode {
   if (
@@ -17,22 +20,48 @@ export function parseApposition(node: GrammarNode): GraphicalNode {
     );
   }
 
-  if (node.children.length === 0) {
-    throw new GrammarError('InvalidStructure', 'Apposition has no children');
-  }
+  if (node.children.length === 1) {
+    let firstDrawUnit = (node.children[0] as GraphicalNode).drawUnit;
 
-  if (node.children.length === 2) {
-    const firstNode = node.children[0] as GraphicalNode;
-    const secondNode = node.children[1] as GraphicalNode;
+    if (node.children[0].content && isWord(node.children[0].content)) {
+      firstDrawUnit = drawWord(node.children[0], true);
+    }
 
     return {
       ...node,
       drawUnit: horizontalMerge(
-        [secondNode.drawUnit, drawEqualDecorator(), firstNode.drawUnit],
+        [
+          verticalMerge([drawEmpty(), drawEmptyLine()], { align: 'center' }),
+          drawEqualDecorator(),
+          firstDrawUnit,
+        ],
         {
           align: 'center',
-          verticalCenter: firstNode.drawUnit.verticalCenter,
-          verticalEnd: firstNode.drawUnit.verticalEnd,
+          verticalCenter: firstDrawUnit.verticalCenter,
+          verticalEnd: firstDrawUnit.verticalEnd,
+        },
+      ),
+    };
+  }
+
+  if (node.children.length > 1) {
+    let firstDrawUnit = (node.children[0] as GraphicalNode).drawUnit;
+    let secondDrawUnit = (node.children[1] as GraphicalNode).drawUnit;
+
+    if (node.children[0].content && isWord(node.children[0].content)) {
+      firstDrawUnit = drawWord(node.children[0], true);
+    }
+
+    if (node.children[1].content && isWord(node.children[1].content)) {
+      secondDrawUnit = drawWord(node.children[1], true);
+    }
+
+    return {
+      ...node,
+      drawUnit: horizontalMerge(
+        [firstDrawUnit, drawEqualDecorator(), secondDrawUnit],
+        {
+          align: 'center',
         },
       ),
     };
