@@ -11,18 +11,15 @@ export function drawSimpleGrammarDiagram(container: HTMLElement) {
   const rootNode: GrammarNode = db;
 
   const shaking = shakingTree(JSON.parse(JSON.stringify(rootNode)));
-  console.log('shaking ==>', shaking);
 
   const graphicalRootNode = parse(shaking);
-
-  console.log(graphicalRootNode);
 
   const svg = d3
     .select(container)
     .append('svg')
     .attr(
       'width',
-      Math.max(graphicalRootNode.drawUnit.width, settings.minWidth),
+      Math.max(graphicalRootNode.drawUnit.width + 200, settings.minWidth),
     )
     .attr('height', graphicalRootNode.drawUnit.height)
     .attr(

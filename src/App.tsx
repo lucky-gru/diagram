@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-// import { drawSampleSvgs } from './drawSampleSvgs';
+import { drawSampleSvgs } from './drawSampleSvgs';
 import { drawSimpleGrammarDiagram } from './drawSimpleGrammarDiagram';
 
 export const App: React.FC = () => {

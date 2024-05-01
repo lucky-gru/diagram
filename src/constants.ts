@@ -11,6 +11,17 @@ export const emptyWord: GrammarNode = {
   },
 };
 
+export const spaceWord: GrammarNode = {
+  level: 0,
+  children: [],
+  content: {
+    pos: 'noun',
+    word: '',
+    gloss: '',
+    description: '',
+  },
+};
+
 export const sampleWord: GrammarNode = {
   level: 4,
   children: [],

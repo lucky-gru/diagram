@@ -15,18 +15,12 @@ import { drawAdjectivalDecorator } from './svgDrawer/drawAdjectivalDecorator';
 import { drawAdjectivalClauseDecorator } from './svgDrawer/drawAdjectivalClauseDecorator';
 import { drawAdverbialDecorator } from './svgDrawer/drawAdverbialDecorator';
 import { drawObjectClauseDecorator } from './svgDrawer/drawObjectClauseDecorator';
-import { drawConstructChainConnector } from './svgDrawer/drawConstructChainConnector';
-import { drawSubordinateConjunction } from './svgDrawer/drawSubordinateConjunction';
+
 import { drawPreposition } from './svgDrawer/drawPreposition';
 import { drawVerbparticipleDecorator } from './svgDrawer/drawVerbparticipleDecorator';
 
 import { D3Element } from './simpleGrammarTypes';
-import { drawClauseConjunction } from './svgDrawer/drawClauseConjunction';
-import { drawConjunction } from './svgDrawer/drawConjunction';
 import { drawEmpty } from './svgDrawer/drawEmpty';
-import { drawEmptyConjunction } from './svgDrawer/drawEmptyConjunction';
-import { drawCompoundEndDecorator } from './svgDrawer/drawCompoundEndDecorator';
-import { drawRelativeParticle } from './svgDrawer/drawRelativeParticle';
 import { drawSubjectClauseDecorator } from './svgDrawer/drawSubjectClauseDecorator';
 import { drawVerbInifinitiveDecorator } from './svgDrawer/drawVerbInifinitiveDecorator';
 
@@ -45,33 +39,20 @@ function appendD3Element(container: HTMLElement, element: D3Element) {
 
 export function drawSampleSvgs(container: HTMLElement) {
   const elements = [
-    drawAdjectivalClauseDecorator(),
+    drawPreposition(sampleWord, 200),
+    drawAdjectivalClauseDecorator(drawWord(sampleWord)),
     drawAdjectivalDecorator(),
     drawAdverbialDecorator(),
-    drawClauseConjunction(sampleWord, 100),
     drawClauseDecorator(),
     drawComplementDecorator(),
-    drawConjunction(sampleWord, 200),
-    drawConstructChainConnector([
-      drawWord(sampleWord),
-      drawWord(sampleWord),
-      drawWord(sampleWord),
-    ]),
     drawEmpty(),
-    drawEmptyConjunction(100),
     drawEmptyLine(),
     drawEmptyWord(),
     drawEqualDecorator(),
     drawModifier(sampleWord),
     drawObjectClauseDecorator(),
-    drawCompoundEndDecorator({
-      ...sampleWord,
-      drawUnit: drawWord(sampleWord),
-    }),
-    drawPreposition(sampleWord, 200),
-    drawRelativeParticle(sampleWord, 200),
+
     drawSubjectClauseDecorator(200),
-    drawSubordinateConjunction(sampleWord),
     drawVerbInifinitiveDecorator(),
     drawVerbparticipleDecorator(),
     drawVerticalLine(),
