@@ -1,4 +1,8 @@
-import type { DrawUnit, GraphicalNode } from '../simpleGrammarTypes.js';
+import type {
+  DrawUnit,
+  GraphicalNode,
+  StatusType,
+} from '../simpleGrammarTypes.js';
 
 import { emptyWord } from '../constants.js';
 import { drawWord } from '../svgDrawer/drawWord.js';
@@ -12,11 +16,13 @@ export const drawNominal = ({
   bottomKeys,
   children,
   isNominal,
+  status,
 }: {
   topKeys: string[];
   bottomKeys: string[];
   children: GraphicalNode[];
   isNominal: boolean;
+  status?: StatusType;
 }): DrawUnit => {
   const topDrawUnits: DrawUnit[] = [];
   const bottomDrawUnits: DrawUnit[] = [];
@@ -26,7 +32,7 @@ export const drawNominal = ({
 
     if (topKeys.includes(getKeyFromNode(child))) {
       if (getKeyFromNode(child) === adjectiveKey) {
-        topDrawUnits.push(drawWord(child));
+        topDrawUnits.push(drawWord(child, { status: child.status }));
       } else {
         topDrawUnits.push(child.drawUnit);
       }
@@ -42,16 +48,29 @@ export const drawNominal = ({
   }
 
   if (topDrawUnits.length === 0) {
-    topDrawUnits.push(isNominal ? drawWord(emptyWord) : drawEmptyLine());
+    topDrawUnits.push(
+      isNominal ? drawWord(emptyWord, { status }) : drawEmptyLine({ status }),
+    );
   }
 
   const topDrawUnit = horizontalMerge(topDrawUnits, { align: 'end' });
   const bottomDrawUnit = horizontalMerge(bottomDrawUnits, { align: 'start' });
 
-  const line = drawEmptyLine(Math.max(topDrawUnit.width, bottomDrawUnit.width));
+  const line = drawEmptyLine({
+    lineWidth: Math.max(topDrawUnit.width, bottomDrawUnit.width),
+    status,
+  });
 
   return verticalMerge(
-    [verticalMerge([topDrawUnit, line], { align: 'center' }), bottomDrawUnit],
+    [
+      verticalMerge(
+        [line, { ...topDrawUnit, verticalStart: topDrawUnit.verticalEnd }],
+        {
+          align: 'center',
+        },
+      ),
+      bottomDrawUnit,
+    ],
     {
       align: 'end',
       verticalCenter: topDrawUnit.height,

@@ -8,11 +8,14 @@ import type {
   DrawUnit,
   GrammarNode,
   GraphicalNode,
+  StatusType,
 } from '../simpleGrammarTypes.js';
+import { getColorByStatus, getHebrew } from './utils.js';
 
 export function drawRelativeParticle(
   node: GrammarNode | GraphicalNode,
   drawUnit: DrawUnit,
+  status?: StatusType,
 ): DrawUnit {
   const d3Elem = d3.create('svg:g');
 
@@ -20,7 +23,7 @@ export function drawRelativeParticle(
     throw new Error('drawRelativeParticle Only draw Word');
   }
 
-  const rect1 = ruler(node.content.word);
+  const rect1 = ruler(getHebrew({ status, hebrew: node.content.word }));
   const rect2 = ruler(node.content.gloss);
 
   const width =
@@ -55,27 +58,64 @@ export function drawRelativeParticle(
     .attr('d', lineGenerator(data))
     .attr('fill', 'none')
     .attr('stroke-dasharray', '3,3')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   d3Elem
     .append('text')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('stroke', settings.wordStrokeColor)
-    .attr('fill', settings.wordColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.wordStrokeColor,
+        type: 'hebrew',
+      }),
+    )
+    .attr(
+      'fill',
+      getColorByStatus({
+        status,
+        defaultColor: settings.wordColor,
+        type: 'hebrew',
+      }),
+    )
     .attr(
       'transform',
-      `translate(${width - rect2.width - rect1.width - 2 * settings.wordPadding}, ${startY - settings.padding})`,
+      `translate(${width - rect2.width - rect1.width - 2 * settings.wordPadding}, ${
+        startY - settings.padding
+      })`,
     )
-    .text(node.content.word);
+    .text(getHebrew({ status, hebrew: node.content.word }));
 
   d3Elem
     .append('text')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('stroke', settings.glossColor)
-    .attr('fill', settings.glossColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.glossColor,
+        type: 'gloss',
+      }),
+    )
+    .attr(
+      'fill',
+      getColorByStatus({
+        status,
+        defaultColor: settings.glossColor,
+        type: 'gloss',
+      }),
+    )
     .attr(
       'transform',
       `translate(${width - rect2.width}, ${startY - settings.padding})`,

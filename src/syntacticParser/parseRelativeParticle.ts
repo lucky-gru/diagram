@@ -34,6 +34,7 @@ export function parseRelativeParticle(node: GrammarNode): GraphicalNode {
       drawUnit: drawRelativeParticle(
         node.children[0],
         (node.children[0] as GraphicalNode).drawUnit,
+        node.children[0].status,
       ),
     };
   }

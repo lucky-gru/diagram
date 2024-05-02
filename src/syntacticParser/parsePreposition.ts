@@ -23,7 +23,7 @@ export function parsePreposition(node: GrammarNode): GraphicalNode {
     if (child.content && isWord(child.content)) {
       return {
         ...node,
-        drawUnit: drawPreposition(child),
+        drawUnit: drawPreposition(child, { status: node.status }),
       };
     } else {
       return {
@@ -35,6 +35,6 @@ export function parsePreposition(node: GrammarNode): GraphicalNode {
 
   return {
     ...node,
-    drawUnit: drawPreposition(spaceWord),
+    drawUnit: drawPreposition(spaceWord, { status: node.status }),
   };
 }

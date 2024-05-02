@@ -29,7 +29,11 @@ export function parseFragment(node: GrammarNode): GraphicalNode {
       switch (node.children[0].content.fragment) {
         case 'PrepositionalPhrase': {
           node.children[0].drawUnit = verticalMerge(
-            [drawEmptyWord(), drawEmptyLine(70), drawUnit],
+            [
+              drawEmptyWord(node.status),
+              drawEmptyLine({ lineWidth: 70, status: node.status }),
+              drawUnit,
+            ],
             {
               align: 'end',
             },
@@ -39,8 +43,11 @@ export function parseFragment(node: GrammarNode): GraphicalNode {
         case 'Adjectival': {
           node.children[0].drawUnit = verticalMerge(
             [
-              drawEmptyWord(),
-              drawEmptyLine(drawUnit.horizontalEnd - drawUnit.horizontalStart),
+              drawEmptyWord(node.status),
+              drawEmptyLine({
+                lineWidth: drawUnit.horizontalEnd - drawUnit.horizontalStart,
+                status: node.status,
+              }),
               drawUnit,
             ],
             {
@@ -52,7 +59,10 @@ export function parseFragment(node: GrammarNode): GraphicalNode {
         case 'Adverbial': {
           node.children[0].drawUnit = verticalMerge(
             [
-              drawEmptyLine(drawUnit.horizontalEnd - drawUnit.horizontalStart),
+              drawEmptyLine({
+                lineWidth: drawUnit.horizontalEnd - drawUnit.horizontalStart,
+                status: node.status,
+              }),
               drawUnit,
             ],
             {
@@ -69,7 +79,10 @@ export function parseFragment(node: GrammarNode): GraphicalNode {
       if (getKeyFromNode(node.children[0]) !== verbparticipleKey) {
         return {
           ...node,
-          drawUnit: drawWord(node.children[0], true),
+          drawUnit: drawWord(node.children[0], {
+            withLine: true,
+            status: node.status,
+          }),
         };
       }
     }

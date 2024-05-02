@@ -42,7 +42,10 @@ export function parsePrepositionalPhrase(node: GrammarNode): GraphicalNode {
 
     const prepositionDrawUnit = drawPreposition(
       childMap[prepositionFragmentKey].children[0],
-      height,
+      {
+        initialHeight: height,
+        status: node.status,
+      },
     );
 
     return {
@@ -64,7 +67,10 @@ export function parsePrepositionalPhrase(node: GrammarNode): GraphicalNode {
 
     const prepositionDrawUnit = drawPreposition(
       childMap[prepositionFragmentKey].children[0],
-      height,
+      {
+        initialHeight: height,
+        status: node.status,
+      },
     );
 
     return {
@@ -86,7 +92,10 @@ export function parsePrepositionalPhrase(node: GrammarNode): GraphicalNode {
 
     const prepositionDrawUnit = drawPreposition(
       childMap[prepositionFragmentKey].children[0],
-      height,
+      {
+        initialHeight: height,
+        status: node.status,
+      },
     );
 
     return {

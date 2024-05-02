@@ -14,14 +14,12 @@ import { drawComplementDecorator } from './svgDrawer/drawComplementDecorator';
 import { drawAdjectivalDecorator } from './svgDrawer/drawAdjectivalDecorator';
 import { drawAdjectivalClauseDecorator } from './svgDrawer/drawAdjectivalClauseDecorator';
 import { drawAdverbialDecorator } from './svgDrawer/drawAdverbialDecorator';
-import { drawObjectClauseDecorator } from './svgDrawer/drawObjectClauseDecorator';
 
 import { drawPreposition } from './svgDrawer/drawPreposition';
 import { drawVerbparticipleDecorator } from './svgDrawer/drawVerbparticipleDecorator';
 
 import { D3Element } from './simpleGrammarTypes';
 import { drawEmpty } from './svgDrawer/drawEmpty';
-import { drawSubjectClauseDecorator } from './svgDrawer/drawSubjectClauseDecorator';
 import { drawVerbInifinitiveDecorator } from './svgDrawer/drawVerbInifinitiveDecorator';
 
 function appendD3Element(container: HTMLElement, element: D3Element) {
@@ -39,20 +37,18 @@ function appendD3Element(container: HTMLElement, element: D3Element) {
 
 export function drawSampleSvgs(container: HTMLElement) {
   const elements = [
-    drawPreposition(sampleWord, 200),
+    drawPreposition(sampleWord, { initialHeight: 200 }),
     drawAdjectivalClauseDecorator(drawWord(sampleWord)),
-    drawAdjectivalDecorator(),
-    drawAdverbialDecorator(),
-    drawClauseDecorator(),
+    drawAdjectivalDecorator({}),
+    drawAdverbialDecorator({}),
+    drawClauseDecorator({}),
     drawComplementDecorator(),
     drawEmpty(),
-    drawEmptyLine(),
+    drawEmptyLine({}),
     drawEmptyWord(),
     drawEqualDecorator(),
     drawModifier(sampleWord),
-    drawObjectClauseDecorator(),
 
-    drawSubjectClauseDecorator(200),
     drawVerbInifinitiveDecorator(),
     drawVerbparticipleDecorator(),
     drawVerticalLine(),

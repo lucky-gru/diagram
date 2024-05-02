@@ -44,6 +44,7 @@ export function parseSubordinateClause(node: GrammarNode): GraphicalNode {
         drawUnit: drawSubordinateConjunction(
           childMap[conjunctionFragmentKey].children[0],
           childMap[clauseKey].drawUnit,
+          node.status,
         ),
       };
     }
@@ -54,6 +55,7 @@ export function parseSubordinateClause(node: GrammarNode): GraphicalNode {
         drawUnit: drawSubordinateConjunction(
           childMap[conjunctionFragmentKey].children[0],
           childMap[clauseClusterKey].drawUnit,
+          node.status,
         ),
       };
     }

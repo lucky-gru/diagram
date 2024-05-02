@@ -74,6 +74,6 @@ export function parseRelativeClause(node: GrammarNode): GraphicalNode {
 
   return {
     ...node,
-    drawUnit: drawRelativeParticle(particleNode, drawUnit),
+    drawUnit: drawRelativeParticle(particleNode, drawUnit, node.status),
   };
 }

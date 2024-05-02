@@ -91,7 +91,7 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
         ...node,
         drawUnit: drawConstructChainConnector(
           childMap[constructchainKey].children as GraphicalNode[],
-          { horizontalLine: true },
+          { horizontalLine: true, status: childMap[constructchainKey].status },
         ),
       };
     }
@@ -103,6 +103,7 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
           childMap[constructChainCompoundKey].drawUnit,
           'solid',
           true,
+          node.status,
         ),
       };
     }
@@ -117,9 +118,13 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
           drawUnit: verticalMerge(
             [
               nominalDrawUnit,
-              drawEmptyLine(
-                Math.max(nominalDrawUnit.width, adjectivalDrawUnit.width),
-              ),
+              drawEmptyLine({
+                lineWidth: Math.max(
+                  nominalDrawUnit.width,
+                  adjectivalDrawUnit.width,
+                ),
+                status: node.status,
+              }),
               adjectivalDrawUnit,
             ],
             { align: 'end' },
@@ -140,6 +145,7 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
           childMap[nominalGroupKey].drawUnit,
           'solid',
           true,
+          node.status,
         ),
       };
     }
@@ -151,15 +157,19 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
           childMap[nominalCompoundKey].drawUnit,
           'solid',
           true,
+          node.status,
         ),
       };
     }
 
     if (childMap[vocativeKey]) {
-      const drawUnit = verticalMerge([drawEmptyWord(), drawEmptyLine()], {
-        align: 'center',
-        verticalCenter: drawEmptyWord().height,
-      });
+      const drawUnit = verticalMerge(
+        [drawEmptyWord(node.status), drawEmptyLine({ status: node.status })],
+        {
+          align: 'center',
+          verticalCenter: drawEmptyWord(node.status).height,
+        },
+      );
 
       return {
         ...node,
@@ -184,6 +194,7 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
           subjectNode
             ? (subjectNode as GraphicalNode).drawUnit.width - settings.padding
             : settings.padding,
+          node.status,
         ),
       };
     }
@@ -201,6 +212,7 @@ export function parseSubject(node: GrammarNode): GraphicalNode {
       bottomKeys,
       children: node.children as GraphicalNode[],
       isNominal: false,
+      status: node.status,
     }),
   };
 }

@@ -17,16 +17,27 @@ export function parseConjunction(node: GrammarNode): GraphicalNode {
     ...node,
     drawUnit: horizontalMerge(
       [
-        ...node.children.map((child) => {
-          if (child.content && isWord(child.content)) {
-            const drawUnit = (child as GraphicalNode).drawUnit;
-            return verticalMerge([drawUnit, drawEmptyLine(drawUnit.width)], {
-              align: 'center',
-            });
-          }
+        ...node.children
+          .map((child) => {
+            if (child.content && isWord(child.content)) {
+              const drawUnit = (child as GraphicalNode).drawUnit;
+              return verticalMerge(
+                [
+                  drawUnit,
+                  drawEmptyLine({
+                    lineWidth: drawUnit.width,
+                    status: node.status,
+                  }),
+                ],
+                {
+                  align: 'center',
+                },
+              );
+            }
 
-          return (child as GraphicalNode).drawUnit;
-        }),
+            return (child as GraphicalNode).drawUnit;
+          })
+          .reverse(),
       ],
       { align: 'start' },
     ),

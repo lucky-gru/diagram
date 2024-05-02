@@ -8,16 +8,20 @@ import type {
   DrawUnit,
   GrammarNode,
   GraphicalNode,
+  StatusType,
 } from '../simpleGrammarTypes.js';
+import { getColorByStatus, getHebrew } from './utils.js';
 
 export const drawConjunctionWithNode = ({
   basicHeight,
   node,
   lineType,
+  status,
 }: {
   basicHeight: number;
   node: GrammarNode | GraphicalNode;
   lineType: 'dash' | 'solid';
+  status?: StatusType;
 }): DrawUnit => {
   const d3Elem = d3.create('svg:g');
 
@@ -25,7 +29,7 @@ export const drawConjunctionWithNode = ({
     throw new Error('WordDrawer Only draw Word');
   }
 
-  const rect1 = ruler(node.content.word);
+  const rect1 = ruler(getHebrew({ status, hebrew: node.content.word }));
   const rect2 = ruler(node.content.gloss);
 
   const maxWordWidth = Math.max(rect1.width, rect2.width);
@@ -48,7 +52,14 @@ export const drawConjunctionWithNode = ({
   line
     .attr('d', lineGenerator(data))
     .attr('fill', 'none')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   if (lineType === 'dash') {
@@ -59,20 +70,48 @@ export const drawConjunctionWithNode = ({
     .append('text')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('stroke', settings.wordStrokeColor)
-    .attr('fill', settings.wordColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.wordStrokeColor,
+        type: 'hebrew',
+      }),
+    )
+    .attr(
+      'fill',
+      getColorByStatus({
+        status,
+        defaultColor: settings.wordColor,
+        type: 'hebrew',
+      }),
+    )
     .attr(
       'transform',
       `translate(${maxWordWidth - rect1.width - width}, ${height / 2 + settings.wordPadding})`,
     )
-    .text(node.content.word);
+    .text(getHebrew({ status, hebrew: node.content.word }));
 
   d3Elem
     .append('text')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('stroke', settings.glossColor)
-    .attr('fill', settings.glossColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.glossColor,
+        type: 'gloss',
+      }),
+    )
+    .attr(
+      'fill',
+      getColorByStatus({
+        status,
+        defaultColor: settings.glossColor,
+        type: 'gloss',
+      }),
+    )
     .attr(
       'transform',
       `translate(${maxWordWidth - rect2.width - width}, ${height / 2 - settings.wordPadding})`,
@@ -95,9 +134,11 @@ export const drawConjunctionWithNode = ({
 export const drawConjunctionWithEmpty = ({
   basicHeight,
   lineType,
+  status,
 }: {
   basicHeight: number;
   lineType: 'dash' | 'solid';
+  status?: StatusType;
 }): DrawUnit => {
   const d3Elem = d3.create('svg:g');
 
@@ -118,7 +159,14 @@ export const drawConjunctionWithEmpty = ({
   line
     .attr('d', lineGenerator(data))
     .attr('fill', 'none')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   if (lineType === 'dash') {
@@ -142,21 +190,25 @@ export const drawConjunction = ({
   basicHeight,
   node,
   lineType,
+  status,
 }: {
   basicHeight: number;
   node?: GrammarNode | GraphicalNode;
   lineType: 'dash' | 'solid';
+  status?: StatusType;
 }): DrawUnit => {
   if (node) {
     return drawConjunctionWithNode({
       basicHeight,
       node,
       lineType,
+      status,
     });
   }
 
   return drawConjunctionWithEmpty({
     basicHeight,
     lineType,
+    status,
   });
 };

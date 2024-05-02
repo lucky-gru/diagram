@@ -17,18 +17,27 @@ export type Word = {
   word: string;
   gloss: string;
   description: string;
+  arguments: string;
 };
 
 export type Fragment = {
   fragment: string;
   description: string;
+  arguments: string;
 };
+
+export type StatusType =
+  | 'elided'
+  | 'revocalization'
+  | 'emendation'
+  | 'alternative';
 
 export type GrammarNode = {
   level: number;
   parent?: GrammarNode;
   children: (GrammarNode | GraphicalNode)[];
   content: Word | Fragment | null;
+  status?: StatusType;
 };
 
 export type GraphicalNode = GrammarNode & {

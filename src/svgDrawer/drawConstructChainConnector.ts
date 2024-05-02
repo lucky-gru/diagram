@@ -3,7 +3,11 @@ import * as d3 from 'd3';
 import { settings } from '../settings.js';
 import { isWord } from '../utils.js';
 
-import type { DrawUnit, GraphicalNode } from '../simpleGrammarTypes.js';
+import type {
+  DrawUnit,
+  GraphicalNode,
+  StatusType,
+} from '../simpleGrammarTypes.js';
 import {
   adjectivalKey,
   adjectiveKey,
@@ -12,7 +16,7 @@ import {
   verbinfinitiveKey,
   verbparticipleKey,
 } from '../syntacticParser/keys.js';
-import { horizontalMerge, verticalMerge } from './utils.js';
+import { getColorByStatus, horizontalMerge, verticalMerge } from './utils.js';
 import { drawEmptyWord } from './drawEmptyWord.js';
 import { drawEmptyLine } from './drawEmptyLine.js';
 import { drawWord } from './drawWord.js';
@@ -23,6 +27,7 @@ export function drawConstructChainConnector(
   options?: {
     horizontalLine?: boolean;
     drawUnit?: DrawUnit;
+    status?: StatusType;
   },
 ): DrawUnit {
   const d3Elem = d3.create('svg:g');
@@ -36,20 +41,36 @@ export function drawConstructChainConnector(
       )
     ) {
       return verticalMerge(
-        [drawEmptyWord(), drawEmptyLine(child.drawUnit.width), child.drawUnit],
-        { align: 'center', verticalCenter: drawEmptyWord().height },
+        [
+          drawEmptyWord(options?.status),
+          drawEmptyLine({
+            lineWidth: child.drawUnit.width,
+            status: options?.status,
+          }),
+          child.drawUnit,
+        ],
+        {
+          align: 'center',
+          verticalCenter: drawEmptyWord(options?.status).height,
+        },
       );
     } else if (
       child.content &&
       isWord(child.content) &&
       getKeyFromNode(child) !== verbparticipleKey
     ) {
-      const drawUnit = drawWord(child, true);
+      const drawUnit = drawWord(child, {
+        withLine: true,
+        status: options?.status,
+      });
 
       if (getKeyFromNode(child) === verbinfinitiveKey) {
-        return horizontalMerge([drawUnit, drawVerbInifinitiveDecorator()], {
-          align: 'center',
-        });
+        return horizontalMerge(
+          [drawUnit, drawVerbInifinitiveDecorator(options?.status)],
+          {
+            align: 'center',
+          },
+        );
       }
 
       return drawUnit;
@@ -82,7 +103,14 @@ export function drawConstructChainConnector(
       .append('path')
       .attr('d', lineGenerator(horizontalLineData))
       .attr('fill', 'none')
-      .attr('stroke', settings.strokeColor)
+      .attr(
+        'stroke',
+        getColorByStatus({
+          status: options?.status,
+          defaultColor: settings.strokeColor,
+          type: 'line',
+        }),
+      )
       .attr('stroke-width', settings.lineStrokeWidth);
   }
 
@@ -116,7 +144,14 @@ export function drawConstructChainConnector(
         .append('path')
         .attr('d', lineGenerator(data))
         .attr('fill', 'none')
-        .attr('stroke', settings.strokeColor)
+        .attr(
+          'stroke',
+          getColorByStatus({
+            status: options?.status,
+            type: 'line',
+            defaultColor: settings.strokeColor,
+          }),
+        )
         .attr('stroke-width', settings.lineStrokeWidth);
 
       yOrigin += verticalLineHeight - drawUnits[i + 1].verticalCenter;

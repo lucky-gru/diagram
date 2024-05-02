@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 
-import type { DrawUnit } from '../simpleGrammarTypes.js';
+import type { DrawUnit, StatusType } from '../simpleGrammarTypes.js';
+import { settings } from 'src/settings.js';
 
 type Alignment = 'start' | 'center' | 'end';
 
@@ -452,4 +453,50 @@ export function horizontalMerge(
       ? options.horizontalEnd
       : width - rightOuter,
   };
+}
+
+export function getHebrew({
+  status,
+  hebrew,
+}: {
+  status?: StatusType;
+  hebrew: string;
+}) {
+  if (status === 'elided' && hebrew.trim() !== '( )') {
+    return `( ${hebrew} )`;
+  }
+
+  return hebrew;
+}
+
+export function getColorByStatus({
+  status,
+  defaultColor,
+  type,
+}: {
+  status?: StatusType;
+  type: 'line' | 'hebrew' | 'gloss';
+  defaultColor: string;
+}) {
+  if (status === undefined) {
+    return defaultColor;
+  }
+
+  if (status === 'elided') {
+    return settings.elidedColor;
+  }
+
+  if (status === 'alternative') {
+    return settings.alternativeColor;
+  }
+
+  if (status === 'emendation' && type === 'hebrew') {
+    return settings.emendationColor;
+  }
+
+  if (status === 'revocalization') {
+    return settings.revocalizationColor;
+  }
+
+  return defaultColor;
 }

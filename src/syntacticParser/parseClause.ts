@@ -63,7 +63,7 @@ export function parseClause(node: GrammarNode): GraphicalNode {
   if (havingGivenKeys(node.children, ignoreKeys)) {
     return {
       ...node,
-      drawUnit: drawClauseDecorator(),
+      drawUnit: drawClauseDecorator({ status: node.status }),
     };
   }
 
@@ -72,7 +72,10 @@ export function parseClause(node: GrammarNode): GraphicalNode {
   if (childMap[complementKey]) {
     elements.push(
       horizontalMerge(
-        [childMap[complementKey].drawUnit, drawComplementDecorator()],
+        [
+          childMap[complementKey].drawUnit,
+          drawComplementDecorator(node.status),
+        ],
         {
           align: ['center', 'end'],
         },
@@ -83,7 +86,7 @@ export function parseClause(node: GrammarNode): GraphicalNode {
   if (childMap[secondObjectKey]) {
     elements.push(
       horizontalMerge(
-        [childMap[secondObjectKey].drawUnit, drawVerticalLine()],
+        [childMap[secondObjectKey].drawUnit, drawVerticalLine(node.status)],
         {
           align: ['center', 'end'],
         },
@@ -93,9 +96,12 @@ export function parseClause(node: GrammarNode): GraphicalNode {
 
   if (childMap[objectKey]) {
     elements.push(
-      horizontalMerge([childMap[objectKey].drawUnit, drawVerticalLine()], {
-        align: ['center', 'end'],
-      }),
+      horizontalMerge(
+        [childMap[objectKey].drawUnit, drawVerticalLine(node.status)],
+        {
+          align: ['center', 'end'],
+        },
+      ),
     );
   }
 
@@ -108,11 +114,19 @@ export function parseClause(node: GrammarNode): GraphicalNode {
   }
 
   if (childMap[verbKey]) {
-    elements.push(drawWord(childMap[verbKey], true));
+    elements.push(
+      drawWord(childMap[verbKey], {
+        withLine: true,
+        status: node.status,
+      }),
+    );
   }
 
   elements.push(
-    drawClauseDecorator(childMap[subordinateClauseKey]?.drawUnit || undefined),
+    drawClauseDecorator({
+      drawUnit: childMap[subordinateClauseKey]?.drawUnit || undefined,
+      status: node.status,
+    }),
   );
 
   if (childMap[subjectKey]) {

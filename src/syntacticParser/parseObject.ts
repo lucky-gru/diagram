@@ -122,7 +122,9 @@ export function parseObject(node: GrammarNode): GraphicalNode {
               bottomKeys,
               children: node.children as GraphicalNode[],
               isNominal: false,
+              status: node.status,
             }),
+            status: childMap[constructchainKey].status,
           },
         ),
       };
@@ -147,6 +149,7 @@ export function parseObject(node: GrammarNode): GraphicalNode {
           subjectNode
             ? (subjectNode as GraphicalNode).drawUnit.width - settings.padding
             : settings.padding,
+          node.status,
         ),
       };
     }
@@ -192,6 +195,7 @@ export function parseObject(node: GrammarNode): GraphicalNode {
       bottomKeys,
       children: node.children as GraphicalNode[],
       isNominal: false,
+      status: node.status,
     }),
   );
 
@@ -200,7 +204,10 @@ export function parseObject(node: GrammarNode): GraphicalNode {
       let drawUnit = childMap[key].drawUnit;
 
       if (childMap[key].content && isWord(childMap[key].content!)) {
-        drawUnit = drawWord(childMap[key], true);
+        drawUnit = drawWord(childMap[key], {
+          withLine: true,
+          status: node.status,
+        });
       }
 
       elements.push(drawUnit);

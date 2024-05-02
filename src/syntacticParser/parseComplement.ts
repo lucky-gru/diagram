@@ -163,6 +163,7 @@ export function parseComplement(node: GrammarNode): GraphicalNode {
       bottomKeys,
       children: node.children as GraphicalNode[],
       isNominal: true,
+      status: node.status,
     }),
   };
 }

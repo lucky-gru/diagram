@@ -211,16 +211,19 @@ export function parse(node: GrammarNode): GraphicalNode {
 
     if (isWord(node.content)) {
       if (getKeyFromNode(node) === verbparticipleKey) {
-        const drawUnit = drawWord(node);
+        const drawUnit = drawWord(node, { status: node.status });
 
         return {
           ...node,
-          drawUnit: horizontalMerge([drawUnit, drawVerbparticipleDecorator()], {
-            align: ['end', 'end'],
-            verticalStart: drawUnit.verticalStart,
-            verticalCenter: drawUnit.verticalCenter,
-            verticalEnd: drawUnit.verticalEnd,
-          }),
+          drawUnit: horizontalMerge(
+            [drawUnit, drawVerbparticipleDecorator(node.status)],
+            {
+              align: ['end', 'end'],
+              verticalStart: drawUnit.verticalStart,
+              verticalCenter: drawUnit.verticalCenter,
+              verticalEnd: drawUnit.verticalEnd,
+            },
+          ),
         };
       }
 
@@ -231,13 +234,13 @@ export function parse(node: GrammarNode): GraphicalNode {
       ) {
         return {
           ...node,
-          drawUnit: drawModifier(node),
+          drawUnit: drawModifier(node, node.status),
         };
       }
 
       return {
         ...node,
-        drawUnit: drawWord(node),
+        drawUnit: drawWord(node, { status: node.status, withLine: true }),
       };
     }
 
@@ -246,8 +249,6 @@ export function parse(node: GrammarNode): GraphicalNode {
       'Invalid structure, not defined parser',
     );
   } catch (err) {
-    console.log(err);
-
     return {
       ...node,
       drawUnit: drawError('Parse', (err as GrammarError).errorType),

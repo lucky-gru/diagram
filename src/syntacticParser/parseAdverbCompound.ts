@@ -39,13 +39,15 @@ export function parseAdverbCompound(node: GrammarNode): GraphicalNode {
       ...node,
       drawUnit: horizontalMerge(
         [
-          ...validChildren.map((child) => {
-            if (isFragment(child.content!)) {
-              return (child as GraphicalNode).drawUnit;
-            }
+          ...validChildren
+            .map((child) => {
+              if (isFragment(child.content!)) {
+                return (child as GraphicalNode).drawUnit;
+              }
 
-            return drawModifier(child);
-          }),
+              return drawModifier(child, child.status);
+            })
+            .reverse(),
         ],
         { align: 'start' },
       ),

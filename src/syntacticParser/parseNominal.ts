@@ -121,6 +121,7 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
           subjectNode
             ? (subjectNode as GraphicalNode).drawUnit.width - settings.padding
             : settings.padding,
+          node.status,
         ),
       };
     }
@@ -131,15 +132,25 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
         ...node,
         drawUnit: horizontalMerge(
           [
-            verticalMerge([drawEmptyLine(drawUnit.width), drawUnit], {
-              align: 'end',
-              verticalCenter: 0,
-            }),
+            verticalMerge(
+              [
+                drawEmptyLine({
+                  lineWidth: drawUnit.width,
+                  status: node.status,
+                }),
+                drawUnit,
+              ],
+              {
+                align: 'end',
+                verticalCenter: 0,
+              },
+            ),
             drawNominal({
               topKeys,
               bottomKeys,
               children: node.children as GraphicalNode[],
               isNominal: true,
+              status: node.status,
             }),
           ],
           { align: 'center' },
@@ -165,7 +176,9 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
               bottomKeys,
               children: node.children as GraphicalNode[],
               isNominal: false,
+              status: node.status,
             }),
+            status: childMap[constructchainKey].status,
           },
         ),
       };
@@ -180,6 +193,7 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
               bottomKeys,
               children: node.children as GraphicalNode[],
               isNominal: false,
+              status: node.status,
             }),
             childMap[nominalKey].drawUnit,
           ],
@@ -190,22 +204,34 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
 
     if (childMap[adjectiveKey] && childMap[adverbialKey]) {
       const drawUnit = drawAdverbialDecorator({
-        adverbDrawUnit: childMap[adjectiveKey].drawUnit,
-        adverbialDrawUnit: childMap[adverbialKey].drawUnit,
+        props: {
+          adverbDrawUnit: childMap[adjectiveKey].drawUnit,
+          adverbialDrawUnit: childMap[adverbialKey].drawUnit,
+        },
+        status: node.status,
       });
 
       return {
         ...node,
         drawUnit: verticalMerge(
           [
-            verticalMerge([drawEmptyWord(), drawEmptyLine(drawUnit.width)], {
-              align: 'center',
-            }),
+            verticalMerge(
+              [
+                drawEmptyWord(node.status),
+                drawEmptyLine({
+                  lineWidth: drawUnit.width,
+                  status: node.status,
+                }),
+              ],
+              {
+                align: 'center',
+              },
+            ),
             drawUnit,
           ],
           {
             align: 'end',
-            verticalCenter: drawEmptyWord().height,
+            verticalCenter: drawEmptyWord(node.status).height,
           },
         ),
       };
@@ -219,6 +245,7 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
       bottomKeys,
       children: node.children as GraphicalNode[],
       isNominal: true,
+      status: node.status,
     }),
   };
 }

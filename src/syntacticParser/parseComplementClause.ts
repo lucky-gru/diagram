@@ -48,14 +48,17 @@ export function parseComplementClauseClause(node: GrammarNode): GraphicalNode {
     const drawUnit = childMap[conjunctionFragmentKey].drawUnit;
 
     conjunctionDrawUnit = verticalMerge(
-      [drawUnit, drawEmptyLine(drawUnit.width)],
+      [
+        drawUnit,
+        drawEmptyLine({ lineWidth: drawUnit.width, status: node.status }),
+      ],
       {
         align: 'center',
         verticalCenter: drawUnit.height,
       },
     );
   } else {
-    conjunctionDrawUnit = drawEmptyLine();
+    conjunctionDrawUnit = drawEmptyLine({ status: node.status });
   }
 
   if (childMap[clauseKey]) {
@@ -72,6 +75,7 @@ export function parseComplementClauseClause(node: GrammarNode): GraphicalNode {
             subjectNode
               ? (subjectNode as GraphicalNode).drawUnit.width - settings.padding
               : settings.padding,
+            node.status,
           ),
           conjunctionDrawUnit,
         ],
@@ -87,7 +91,11 @@ export function parseComplementClauseClause(node: GrammarNode): GraphicalNode {
       ...node,
       drawUnit: horizontalMerge(
         [
-          drawComplementClauseDecorator(childMap[clauseClusterKey].drawUnit, 0),
+          drawComplementClauseDecorator(
+            childMap[clauseClusterKey].drawUnit,
+            0,
+            node.status,
+          ),
           conjunctionDrawUnit,
         ],
         { align: 'end' },

@@ -134,6 +134,7 @@ export function generateNewCompoundFragment(nodes: GrammarNode[]): GrammarNode {
         content: {
           fragment: compoundType,
           description: '',
+          arguments: '',
         },
       };
     }
@@ -145,6 +146,7 @@ export function generateNewCompoundFragment(nodes: GrammarNode[]): GrammarNode {
     content: {
       fragment: 'Error',
       description: 'Invalid structure',
+      arguments: '',
     },
   };
 }
@@ -293,6 +295,7 @@ export function shakingTreeForDuplication(node: GrammarNode): GrammarNode {
         content: {
           fragment: groupType,
           description: '',
+          arguments: '',
         },
       });
     } else if (children.length === 1) {

@@ -2,9 +2,6 @@
   "extends": "@tsconfig/vite-react",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"]
-    },
     "resolveJsonModule": true
   },
   "include": ["src", "src/svgDrawer/.ts"]

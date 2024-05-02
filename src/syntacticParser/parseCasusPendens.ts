@@ -57,7 +57,13 @@ export function parseCasusPendens(node: GrammarNode): GraphicalNode {
       )
     ) {
       firstNodeDrawUnit = verticalMerge(
-        [firstNode.drawUnit, drawEmptyLine(firstNode.drawUnit.width)],
+        [
+          firstNode.drawUnit,
+          drawEmptyLine({
+            lineWidth: firstNode.drawUnit.width,
+            status: node.status,
+          }),
+        ],
         { align: 'center', verticalCenter: firstNodeDrawUnit.verticalCenter },
       );
     }
@@ -68,7 +74,13 @@ export function parseCasusPendens(node: GrammarNode): GraphicalNode {
       )
     ) {
       secondNodeDrawUnit = verticalMerge(
-        [secondNode.drawUnit, drawEmptyLine(secondNode.drawUnit.width)],
+        [
+          secondNode.drawUnit,
+          drawEmptyLine({
+            lineWidth: secondNode.drawUnit.width,
+            status: node.status,
+          }),
+        ],
         { align: 'center', verticalCenter: firstNodeDrawUnit.verticalCenter },
       );
     }

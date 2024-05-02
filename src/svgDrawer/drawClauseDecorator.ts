@@ -2,9 +2,16 @@ import * as d3 from 'd3';
 
 import { settings } from '../settings.js';
 
-import type { DrawUnit } from '../simpleGrammarTypes.js';
+import type { DrawUnit, StatusType } from '../simpleGrammarTypes.js';
+import { getColorByStatus } from './utils.js';
 
-export const drawClauseDecorator = (drawUnit?: DrawUnit): DrawUnit => {
+export const drawClauseDecorator = ({
+  drawUnit,
+  status,
+}: {
+  drawUnit?: DrawUnit;
+  status?: StatusType;
+}): DrawUnit => {
   const d3Elem = d3.create('svg:g');
 
   const basicWidth = 2 * settings.padding;
@@ -40,14 +47,28 @@ export const drawClauseDecorator = (drawUnit?: DrawUnit): DrawUnit => {
     .append('path')
     .attr('d', lineGenerator(horizontalLineData))
     .attr('fill', 'none')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   d3Elem
     .append('path')
     .attr('d', lineGenerator(verticalLineData))
     .attr('fill', 'none')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   return {

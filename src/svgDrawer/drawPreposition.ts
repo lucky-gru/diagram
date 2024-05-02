@@ -8,12 +8,17 @@ import type {
   DrawUnit,
   GrammarNode,
   GraphicalNode,
+  StatusType,
 } from '../simpleGrammarTypes.js';
+import { getColorByStatus, getHebrew } from './utils.js';
 
 export function drawPreposition(
   node: GrammarNode | GraphicalNode,
-  initialHeight: number = settings.height,
-  lineType: 'solid' | 'dash' = 'solid',
+  options?: {
+    initialHeight?: number;
+    lineType?: 'solid' | 'dash';
+    status?: StatusType;
+  },
 ): DrawUnit {
   const d3Elem = d3.create('svg:g');
 
@@ -21,7 +26,11 @@ export function drawPreposition(
     throw new Error('drawPreposition Only draw Word');
   }
 
-  const rect1 = ruler(node.content.word);
+  const initialHeight = options?.initialHeight || settings.height;
+  const lineType = options?.lineType || 'solid';
+  const status = options?.status;
+
+  const rect1 = ruler(getHebrew({ status, hebrew: node.content.word }));
   const rect2 = ruler(node.content.gloss);
 
   const height = initialHeight + settings.padding;
@@ -49,7 +58,14 @@ export function drawPreposition(
   line
     .attr('d', lineGenerator(slashData))
     .attr('fill', 'none')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   if (lineType === 'dash') {
@@ -66,16 +82,44 @@ export function drawPreposition(
         (height + rect1.height) / 2
       })`,
     )
-    .attr('stroke', settings.wordStrokeColor)
-    .attr('fill', settings.wordColor)
-    .text(node.content.word);
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.wordStrokeColor,
+        type: 'hebrew',
+      }),
+    )
+    .attr(
+      'fill',
+      getColorByStatus({
+        status,
+        defaultColor: settings.wordColor,
+        type: 'hebrew',
+      }),
+    )
+    .text(getHebrew({ status, hebrew: node.content.word }));
 
   d3Elem
     .append('text')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('stroke', settings.glossColor)
-    .attr('fill', settings.glossColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.glossColor,
+        type: 'gloss',
+      }),
+    )
+    .attr(
+      'fill',
+      getColorByStatus({
+        status,
+        defaultColor: settings.glossColor,
+        type: 'gloss',
+      }),
+    )
     .attr(
       'transform',
       `translate(${width / 2 + settings.wordPadding}, ${(height + rect2.height) / 2})`,

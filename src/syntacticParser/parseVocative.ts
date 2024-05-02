@@ -72,6 +72,7 @@ export function parseVocative(node: GrammarNode): GraphicalNode {
           childMap[constructChainCompoundKey].drawUnit,
           'solid',
           true,
+          node.status,
         ),
       };
     }
@@ -89,6 +90,7 @@ export function parseVocative(node: GrammarNode): GraphicalNode {
       bottomKeys,
       children: node.children as GraphicalNode[],
       isNominal: false,
+      status: node.status,
     }),
   };
 }

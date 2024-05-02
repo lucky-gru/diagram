@@ -91,7 +91,10 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
   if (childMap[complementKey]) {
     elements.push(
       horizontalMerge(
-        [childMap[complementKey].drawUnit, drawComplementDecorator()],
+        [
+          childMap[complementKey].drawUnit,
+          drawComplementDecorator(node.status),
+        ],
         {
           align: ['center', 'end'],
         },
@@ -106,7 +109,7 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
   if (childMap[secondObjectKey]) {
     elements.push(
       horizontalMerge(
-        [childMap[secondObjectKey].drawUnit, drawVerticalLine()],
+        [childMap[secondObjectKey].drawUnit, drawVerticalLine(node.status)],
         {
           align: ['center', 'end'],
         },
@@ -116,17 +119,23 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
 
   if (childMap[objectKey]) {
     elements.push(
-      horizontalMerge([childMap[objectKey].drawUnit, drawVerticalLine()], {
-        align: ['center', 'end'],
-      }),
+      horizontalMerge(
+        [childMap[objectKey].drawUnit, drawVerticalLine(node.status)],
+        {
+          align: ['center', 'end'],
+        },
+      ),
     );
   }
 
   if (childMap[objectGroupKey]) {
     elements.push(
-      horizontalMerge([childMap[objectGroupKey].drawUnit, drawVerticalLine()], {
-        align: ['center', 'end'],
-      }),
+      horizontalMerge(
+        [childMap[objectGroupKey].drawUnit, drawVerticalLine(node.status)],
+        {
+          align: ['center', 'end'],
+        },
+      ),
     );
   }
 
@@ -146,7 +155,9 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
             bottomKeys,
             children: node.children as GraphicalNode[],
             isNominal: false,
+            status: node.status,
           }),
+          status: childMap[constructchainKey].status,
         },
       ),
     );
@@ -157,6 +168,7 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
         bottomKeys,
         children: node.children as GraphicalNode[],
         isNominal: false,
+        status: node.status,
       }),
     );
   }
@@ -170,7 +182,12 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
       elements.push(childMap[predicateCompoundKey].drawUnit);
     } else {
       elements.push(
-        drawCompoundEnd(childMap[predicateCompoundKey].drawUnit, 'solid', true),
+        drawCompoundEnd(
+          childMap[predicateCompoundKey].drawUnit,
+          'solid',
+          true,
+          node.status,
+        ),
       );
     }
   }
@@ -180,14 +197,20 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
       let drawUnit = childMap[key].drawUnit;
 
       if (childMap[key].content && isWord(childMap[key].content!)) {
-        drawUnit = drawWord(childMap[key], true);
+        drawUnit = drawWord(childMap[key], {
+          withLine: true,
+          status: node.status,
+        });
       }
 
       if (key === verbinfinitiveKey) {
-        const verbInfinitiveDrawUnit = drawWord(childMap[key], true);
+        const verbInfinitiveDrawUnit = drawWord(childMap[key], {
+          withLine: true,
+          status: node.status,
+        });
 
         drawUnit = horizontalMerge(
-          [verbInfinitiveDrawUnit, drawVerbInifinitiveDecorator()],
+          [verbInfinitiveDrawUnit, drawVerbInifinitiveDecorator(node.status)],
           {
             align: ['end', 'center'],
             verticalStart: verbInfinitiveDrawUnit.verticalStart,
@@ -206,6 +229,6 @@ export function parsePredicate(node: GrammarNode): GraphicalNode {
     drawUnit:
       elements.length > 0
         ? horizontalMerge(elements, { align: 'center' })
-        : drawEmptyLine(),
+        : drawEmptyLine({ status: node.status }),
   };
 }

@@ -26,6 +26,8 @@ export function parseConstructChain(node: GrammarNode): GraphicalNode {
 
   return {
     ...node,
-    drawUnit: drawConstructChainConnector(node.children as GraphicalNode[]),
+    drawUnit: drawConstructChainConnector(node.children as GraphicalNode[], {
+      status: node.status,
+    }),
   };
 }

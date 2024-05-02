@@ -33,6 +33,11 @@ export function parseObjectCompound(node: GrammarNode): GraphicalNode {
 
   return {
     ...node,
-    drawUnit: drawCompound(node.children as GraphicalNode[], 'solid', true),
+    drawUnit: drawCompound(
+      node.children as GraphicalNode[],
+      'solid',
+      true,
+      node.status,
+    ),
   };
 }

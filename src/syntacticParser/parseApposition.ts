@@ -24,14 +24,19 @@ export function parseApposition(node: GrammarNode): GraphicalNode {
     let firstDrawUnit = (node.children[0] as GraphicalNode).drawUnit;
 
     if (node.children[0].content && isWord(node.children[0].content)) {
-      firstDrawUnit = drawWord(node.children[0], true);
+      firstDrawUnit = drawWord(node.children[0], {
+        withLine: true,
+        status: node.status,
+      });
     }
 
     return {
       ...node,
       drawUnit: horizontalMerge(
         [
-          verticalMerge([drawEmpty(), drawEmptyLine()], { align: 'center' }),
+          verticalMerge([drawEmpty(), drawEmptyLine({ status: node.status })], {
+            align: 'center',
+          }),
           drawEqualDecorator(),
           firstDrawUnit,
         ],
@@ -49,11 +54,17 @@ export function parseApposition(node: GrammarNode): GraphicalNode {
     let secondDrawUnit = (node.children[1] as GraphicalNode).drawUnit;
 
     if (node.children[0].content && isWord(node.children[0].content)) {
-      firstDrawUnit = drawWord(node.children[0], true);
+      firstDrawUnit = drawWord(node.children[0], {
+        withLine: true,
+        status: node.status,
+      });
     }
 
     if (node.children[1].content && isWord(node.children[1].content)) {
-      secondDrawUnit = drawWord(node.children[1], true);
+      secondDrawUnit = drawWord(node.children[1], {
+        withLine: true,
+        status: node.status,
+      });
     }
 
     return {

@@ -2,9 +2,10 @@ import * as d3 from 'd3';
 
 import { settings } from '../settings.js';
 
-import type { DrawUnit } from '../simpleGrammarTypes.js';
+import type { DrawUnit, StatusType } from '../simpleGrammarTypes.js';
+import { getColorByStatus } from './utils.js';
 
-export function drawNormalAdverbialDecorator(): DrawUnit {
+export function drawNormalAdverbialDecorator(status?: StatusType): DrawUnit {
   const d3Elem = d3.create('svg:g');
 
   const width = settings.height;
@@ -25,7 +26,14 @@ export function drawNormalAdverbialDecorator(): DrawUnit {
     .attr('d', lineGenerator(slashData))
     .attr('fill', 'none')
     .attr('stroke-dasharray', '3,3')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   return {
@@ -44,6 +52,7 @@ export function drawNormalAdverbialDecorator(): DrawUnit {
 export function drawSpecialAdverbialDecorator(
   adverbDrawUnit: DrawUnit,
   adverbialDrawUnit: DrawUnit,
+  status?: StatusType,
 ): DrawUnit {
   const d3Elem = d3.create('svg:g');
 
@@ -64,7 +73,9 @@ export function drawSpecialAdverbialDecorator(
     .append(() => adverbialDrawUnit.element.node())
     .attr(
       'transform',
-      `translate(${horizontalCenter - adverbialDrawUnit.horizontalCenter}, ${adverbDrawUnit.height})`,
+      `translate(${horizontalCenter - adverbialDrawUnit.horizontalCenter}, ${
+        adverbDrawUnit.height
+      })`,
     );
 
   d3Elem
@@ -92,7 +103,14 @@ export function drawSpecialAdverbialDecorator(
     .append('path')
     .attr('d', lineGenerator(lineData))
     .attr('fill', 'none')
-    .attr('stroke', settings.strokeColor)
+    .attr(
+      'stroke',
+      getColorByStatus({
+        status,
+        defaultColor: settings.strokeColor,
+        type: 'line',
+      }),
+    )
     .attr('stroke-width', settings.lineStrokeWidth);
 
   return {
@@ -111,16 +129,23 @@ export function drawSpecialAdverbialDecorator(
   };
 }
 
-export function drawAdverbialDecorator(props?: {
-  adverbDrawUnit: DrawUnit;
-  adverbialDrawUnit: DrawUnit;
+export function drawAdverbialDecorator({
+  props,
+  status,
+}: {
+  props?: {
+    adverbDrawUnit: DrawUnit;
+    adverbialDrawUnit: DrawUnit;
+  };
+  status?: StatusType;
 }) {
   if (props) {
     return drawSpecialAdverbialDecorator(
       props.adverbDrawUnit,
       props.adverbialDrawUnit,
+      status,
     );
   } else {
-    return drawNormalAdverbialDecorator();
+    return drawNormalAdverbialDecorator(status);
   }
 }

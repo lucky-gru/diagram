@@ -46,7 +46,7 @@ export function parseClauseCluster(node: GrammarNode): GraphicalNode {
     ),
   );
 
-  let compoundDrawUnit = drawCompound(clauseNodes, 'dash', false);
+  let compoundDrawUnit = drawCompound(clauseNodes, 'dash', false, node.status);
 
   const subordinateClauseNode = node.children.find(
     (child) => getKeyFromNode(child) === subordinateClauseKey,
@@ -57,11 +57,17 @@ export function parseClauseCluster(node: GrammarNode): GraphicalNode {
 
     compoundDrawUnit = horizontalMerge(
       [
-        verticalMerge([drawEmptyLine(drawUnit.width), drawUnit], {
-          align: 'start',
-          verticalCenter: 0,
-        }),
-        drawCompoundEnd(compoundDrawUnit, 'dash', false),
+        verticalMerge(
+          [
+            drawEmptyLine({ lineWidth: drawUnit.width, status: node.status }),
+            drawUnit,
+          ],
+          {
+            align: 'start',
+            verticalCenter: 0,
+          },
+        ),
+        drawCompoundEnd(compoundDrawUnit, 'dash', false, node.status),
       ],
       {
         align: 'center',

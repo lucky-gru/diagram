@@ -32,6 +32,11 @@ export function parseClauseCompound(node: GrammarNode): GraphicalNode {
 
   return {
     ...node,
-    drawUnit: drawCompound(node.children as GraphicalNode[], 'dash', false),
+    drawUnit: drawCompound(
+      node.children as GraphicalNode[],
+      'dash',
+      false,
+      node.status,
+    ),
   };
 }

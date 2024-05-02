@@ -60,8 +60,9 @@ export function parseAdverbialCompound(node: GrammarNode): GraphicalNode {
               return (child as GraphicalNode).drawUnit;
             }
 
-            return drawModifier(child);
-          }),
+            return drawModifier(child, child.status);
+          })
+          .reverse(),
       ],
       { align: 'start' },
     ),
