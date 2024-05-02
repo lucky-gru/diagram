@@ -10,7 +10,7 @@ import type {
   GraphicalNode,
   StatusType,
 } from '../simpleGrammarTypes.js';
-import { getColorByStatus, getHebrew } from './utils.js';
+import { drawGloss, getColorByStatus, getHebrew } from './utils.js';
 
 export const drawModifier = (
   node: GrammarNode | GraphicalNode,
@@ -79,33 +79,23 @@ export const drawModifier = (
     )
     .text(getHebrew({ status, hebrew: node.content.word }));
 
+  const glossDraw = drawGloss(
+    node.content.gloss,
+    getColorByStatus({
+      status: status,
+      defaultColor: settings.glossColor,
+      type: 'gloss',
+    }),
+  );
+
   d3Elem
-    .append('text')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr(
-      'stroke',
-      getColorByStatus({
-        status,
-        defaultColor: settings.glossColor,
-        type: 'gloss',
-      }),
-    )
-    .attr(
-      'fill',
-      getColorByStatus({
-        status,
-        defaultColor: settings.glossColor,
-        type: 'gloss',
-      }),
-    )
+    .append(() => glossDraw.node())
     .attr(
       'transform',
       `translate(${settings.padding + 2 * settings.wordPadding + rect1.width}, ${
         (rect2.height + settings.wordPadding) / 2
       })`,
-    )
-    .text(node.content.gloss);
+    );
 
   return {
     width,

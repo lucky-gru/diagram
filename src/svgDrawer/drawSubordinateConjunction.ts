@@ -9,7 +9,7 @@ import type {
   GrammarNode,
   StatusType,
 } from '../simpleGrammarTypes.js';
-import { getColorByStatus, getHebrew } from './utils.js';
+import { drawGloss, getColorByStatus, getHebrew } from './utils.js';
 
 export function drawSubordinateConjunction(
   conjunctionNode: GrammarNode,
@@ -90,31 +90,21 @@ export function drawSubordinateConjunction(
     )
     .text(getHebrew({ status, hebrew: conjunctionNode.content.word }));
 
+  const glossDraw = drawGloss(
+    conjunctionNode.content.gloss,
+    getColorByStatus({
+      status: status,
+      defaultColor: settings.glossColor,
+      type: 'gloss',
+    }),
+  );
+
   d3Elem
-    .append('text')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr(
-      'stroke',
-      getColorByStatus({
-        status,
-        defaultColor: settings.glossColor,
-        type: 'gloss',
-      }),
-    )
-    .attr(
-      'fill',
-      getColorByStatus({
-        status,
-        defaultColor: settings.glossColor,
-        type: 'gloss',
-      }),
-    )
+    .append(() => glossDraw.node())
     .attr(
       'transform',
       `translate(${width - rect2.width}, ${startY - settings.padding})`,
-    )
-    .text(conjunctionNode.content.gloss);
+    );
 
   return {
     width,

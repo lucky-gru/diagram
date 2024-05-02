@@ -67,6 +67,9 @@ export const drawNominal = ({
         [line, { ...topDrawUnit, verticalStart: topDrawUnit.verticalEnd }],
         {
           align: 'center',
+          verticalStart: topDrawUnit.verticalStart,
+          verticalCenter: topDrawUnit.verticalCenter,
+          verticalEnd: topDrawUnit.verticalEnd,
         },
       ),
       bottomDrawUnit,

@@ -50,22 +50,8 @@ export function parseApposition(node: GrammarNode): GraphicalNode {
   }
 
   if (node.children.length > 1) {
-    let firstDrawUnit = (node.children[0] as GraphicalNode).drawUnit;
-    let secondDrawUnit = (node.children[1] as GraphicalNode).drawUnit;
-
-    if (node.children[0].content && isWord(node.children[0].content)) {
-      firstDrawUnit = drawWord(node.children[0], {
-        withLine: true,
-        status: node.status,
-      });
-    }
-
-    if (node.children[1].content && isWord(node.children[1].content)) {
-      secondDrawUnit = drawWord(node.children[1], {
-        withLine: true,
-        status: node.status,
-      });
-    }
+    let firstDrawUnit = (node.children[1] as GraphicalNode).drawUnit;
+    let secondDrawUnit = (node.children[0] as GraphicalNode).drawUnit;
 
     return {
       ...node,

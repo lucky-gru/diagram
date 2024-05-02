@@ -71,7 +71,6 @@ import {
 
 import { settings } from '../settings.js';
 
-// import { parseConstructChain } from './parseConstructChain.js';
 import { parseFragment } from './parseFragment.js';
 import { parseNominal } from './parseNominal.js';
 import { parseAdjectival } from './parseAdjectival.js';

@@ -2,7 +2,6 @@ import * as d3 from 'd3';
 
 import { settings } from '../settings.js';
 
-import { isWord } from '../utils.js';
 import type {
   DrawUnit,
   GraphicalNode,
@@ -15,6 +14,7 @@ import { drawSpacer } from './drawSpacer.js';
 import { getColorByStatus, horizontalMerge, verticalMerge } from './utils.js';
 import {
   adjectiveKey,
+  conjunctionKey,
   getKeyFromNode,
   prepositionalPhraseKey,
 } from '../syntacticParser/keys.js';
@@ -35,21 +35,6 @@ export const drawCompound = (
   } else {
     firstNodeDrawUnit = (nodes[0] as GraphicalNode).drawUnit;
 
-    if (nodes[0].content && isWord(nodes[0].content)) {
-      firstNodeDrawUnit = verticalMerge(
-        [
-          firstNodeDrawUnit,
-          drawEmptyLine({ lineWidth: firstNodeDrawUnit.width, status }),
-        ],
-        {
-          align: 'center',
-          verticalStart: firstNodeDrawUnit.verticalStart,
-          verticalCenter: firstNodeDrawUnit.verticalCenter,
-          verticalEnd: firstNodeDrawUnit.verticalEnd,
-        },
-      );
-    }
-
     if (getKeyFromNode(nodes[0]) === prepositionalPhraseKey) {
       firstNodeDrawUnit = verticalMerge(
         [
@@ -67,7 +52,10 @@ export const drawCompound = (
     }
 
     if ([adjectiveKey].includes(getKeyFromNode(nodes[0]))) {
-      firstNodeDrawUnit = drawWord(nodes[0], { withLine: true, status });
+      firstNodeDrawUnit = drawWord(nodes[0], {
+        withLine: true,
+        status: nodes[0].status,
+      });
     }
   }
 
@@ -88,23 +76,11 @@ export const drawCompound = (
 
     let secondNodeDrawUnit = (child as GraphicalNode).drawUnit;
 
-    if (child.content && isWord(child.content)) {
-      secondNodeDrawUnit = verticalMerge(
-        [
-          secondNodeDrawUnit,
-          drawEmptyLine({ lineWidth: secondNodeDrawUnit.width, status }),
-        ],
-        {
-          align: 'center',
-          verticalStart: secondNodeDrawUnit.verticalStart,
-          verticalCenter: secondNodeDrawUnit.verticalCenter,
-          verticalEnd: secondNodeDrawUnit.verticalEnd,
-        },
-      );
-
-      if ([adjectiveKey].includes(getKeyFromNode(child))) {
-        secondNodeDrawUnit = drawWord(child, { withLine: true, status });
-      }
+    if ([adjectiveKey].includes(getKeyFromNode(child))) {
+      secondNodeDrawUnit = drawWord(child, {
+        withLine: true,
+        status: child.status,
+      });
     }
 
     if (getKeyFromNode(nodes[i]) === prepositionalPhraseKey) {
@@ -142,14 +118,20 @@ export const drawCompound = (
       },
     );
 
+    const conjunctionNode = conjunction
+      ? getKeyFromNode(conjunction) === conjunctionKey
+        ? conjunction
+        : conjunction.children[0]
+      : undefined;
+
     firstNodeDrawUnit = horizontalMerge(
       [
         mergedDrawUnit,
         drawConjunction({
           basicHeight: height,
-          node: conjunction?.children[0] || undefined,
+          node: conjunctionNode,
           lineType,
-          status,
+          status: conjunctionNode?.status || status,
         }),
       ],
       {

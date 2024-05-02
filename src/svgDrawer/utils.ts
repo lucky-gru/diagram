@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
 
-import type { DrawUnit, StatusType } from '../simpleGrammarTypes.js';
-import { settings } from 'src/settings.js';
+import type { D3Element, DrawUnit, StatusType } from '../simpleGrammarTypes.js';
+import { settings } from '../settings.js';
+import { ruler } from '../utils.js';
 
 type Alignment = 'start' | 'center' | 'end';
 
@@ -499,4 +500,44 @@ export function getColorByStatus({
   }
 
   return defaultColor;
+}
+
+export function drawGloss(gloss: string, color: string): D3Element {
+  const d3Elem = d3.create('svg:g');
+
+  const parts = gloss.split('>>');
+
+  if (parts.length === 2) {
+    const reversed = parts[0].includes('*');
+
+    const rect1 = ruler(
+      `${parts[0].replace('*', '')}${reversed ? '' : ' >> '}`,
+    );
+
+    d3Elem
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('stroke', reversed ? color : 'none')
+      .attr('fill', color)
+      .text(`${parts[0].replace('*', '')}${reversed ? '' : ' >> '}`);
+    d3Elem
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('stroke', !reversed ? color : 'none')
+      .attr('fill', color)
+      .text(`${!reversed ? '' : ' >> '}${parts[0].replace('*', '')}`)
+      .attr('transform', `translate(${rect1.width}, 0)`);
+  } else {
+    d3Elem
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('stroke', color)
+      .attr('fill', color)
+      .text(gloss);
+  }
+
+  return d3Elem;
 }
