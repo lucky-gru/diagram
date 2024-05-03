@@ -28,6 +28,7 @@ export function drawConstructChainConnector(
     horizontalLine?: boolean;
     drawUnit?: DrawUnit;
     status?: StatusType;
+    order: 'before' | 'after';
   },
 ): DrawUnit {
   const d3Elem = d3.create('svg:g');
@@ -118,7 +119,11 @@ export function drawConstructChainConnector(
     let unit = drawUnits[i];
 
     if (i === 0 && options?.drawUnit) {
-      unit = horizontalMerge([options?.drawUnit, unit], { align: 'center' });
+      if (options?.order === 'before') {
+        unit = horizontalMerge([options?.drawUnit, unit], { align: 'center' });
+      } else {
+        unit = horizontalMerge([unit, options?.drawUnit], { align: 'center' });
+      }
     }
 
     childrenContainer

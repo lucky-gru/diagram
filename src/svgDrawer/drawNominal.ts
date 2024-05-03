@@ -9,7 +9,11 @@ import { drawWord } from '../svgDrawer/drawWord.js';
 import { drawEmptyLine } from './drawEmptyLine.js';
 import { horizontalMerge, verticalMerge } from './utils.js';
 import { drawEmpty } from './drawEmpty.js';
-import { adjectiveKey, getKeyFromNode } from '../syntacticParser/keys.js';
+import {
+  adjectiveKey,
+  getKeyFromNode,
+  verbparticipleKey,
+} from '../syntacticParser/keys.js';
 
 export const drawNominal = ({
   topKeys,
@@ -17,12 +21,14 @@ export const drawNominal = ({
   children,
   isNominal,
   status,
+  message,
 }: {
   topKeys: string[];
   bottomKeys: string[];
   children: GraphicalNode[];
   isNominal: boolean;
   status?: StatusType;
+  message?: string;
 }): DrawUnit => {
   const topDrawUnits: DrawUnit[] = [];
   const bottomDrawUnits: DrawUnit[] = [];
@@ -31,7 +37,11 @@ export const drawNominal = ({
     const child = children[i];
 
     if (topKeys.includes(getKeyFromNode(child))) {
-      if (getKeyFromNode(child) === adjectiveKey) {
+      if (
+        getKeyFromNode(child) === adjectiveKey ||
+        (getKeyFromNode(child) === verbparticipleKey &&
+          message === 'adjectival > nominal')
+      ) {
         topDrawUnits.push(drawWord(child, { status: child.status }));
       } else {
         topDrawUnits.push(child.drawUnit);

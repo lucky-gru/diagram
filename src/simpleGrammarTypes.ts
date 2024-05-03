@@ -18,12 +18,14 @@ export type Word = {
   gloss: string;
   description: string;
   arguments: string;
+  message?: string;
 };
 
 export type Fragment = {
   fragment: string;
   description: string;
   arguments: string;
+  message?: string;
 };
 
 export type StatusType =

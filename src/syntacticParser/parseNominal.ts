@@ -102,13 +102,6 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
   }
 
   if (havingGivenKeys(node.children, specialKeys)) {
-    if (childMap[constructchainKey]) {
-      return {
-        ...node,
-        drawUnit: childMap[constructchainKey].drawUnit,
-      };
-    }
-
     if (childMap[clauseKey]) {
       const subjectNode = childMap[clauseKey].children.find(
         (child) => getKeyFromNode(child) === subjectKey,
@@ -166,6 +159,13 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
 
   if (!havingGivenKeys(node.children, topKeys)) {
     if (childMap[constructchainKey]) {
+      const constructchainKeyIndex = node.children.findIndex(
+        (item) => getKeyFromNode(item) === constructchainKey,
+      );
+      const bottomKeyIndex = node.children.findIndex((item) =>
+        bottomKeys.includes(getKeyFromNode(item)),
+      );
+
       return {
         ...node,
         drawUnit: drawConstructChainConnector(
@@ -179,6 +179,7 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
               status: node.status,
             }),
             status: childMap[constructchainKey].status,
+            order: bottomKeyIndex > constructchainKeyIndex ? 'before' : 'after',
           },
         ),
       };
@@ -238,6 +239,8 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
     }
   }
 
+  console.log(node);
+
   return {
     ...node,
     drawUnit: drawNominal({
@@ -246,6 +249,7 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
       children: node.children as GraphicalNode[],
       isNominal: true,
       status: node.status,
+      message: node.content.message,
     }),
   };
 }

@@ -162,7 +162,7 @@ export function parseComplement(node: GrammarNode): GraphicalNode {
       topKeys,
       bottomKeys,
       children: node.children as GraphicalNode[],
-      isNominal: true,
+      isNominal: false,
       status: node.status,
     }),
   };

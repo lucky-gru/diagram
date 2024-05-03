@@ -463,8 +463,8 @@ export function getHebrew({
   status?: StatusType;
   hebrew: string;
 }) {
-  if (status === 'elided' && hebrew.trim() !== '( )') {
-    return `( ${hebrew} )`;
+  if (status === 'elided') {
+    return hebrew.trim() !== '( )' ? '( )' : `( ${hebrew} )`;
   }
 
   return hebrew;

@@ -16,6 +16,7 @@ const emptyWord: GrammarNode = {
     description: '',
     arguments: '',
   },
+  status: 'elided',
 };
 
 export const drawEmptyWord = (status?: StatusType): DrawUnit => {

@@ -1,0 +1,1184 @@
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "verb",
+                        "word": "זָכַר",
+                        "gloss": "he has remembered",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [
+                                {
+                                  "level": 14,
+                                  "children": [],
+                                  "content": {
+                                    "pos": "preposition",
+                                    "word": "לְ",
+                                    "gloss": "towards >> for the sake of",
+                                    "description": "",
+                                    "arguments": ""
+                                  }
+                                }
+                              ],
+                              "content": {
+                                "fragment": "Preposition",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            },
+                            {
+                              "level": 12,
+                              "children": [
+                                {
+                                  "level": 14,
+                                  "children": [
+                                    {
+                                      "level": 16,
+                                      "children": [],
+                                      "content": {
+                                        "pos": "noun",
+                                        "word": "בֵית",
+                                        "gloss": "house >> household",
+                                        "description": "",
+                                        "arguments": ""
+                                      }
+                                    },
+                                    {
+                                      "level": 16,
+                                      "children": [],
+                                      "content": {
+                                        "pos": "noun",
+                                        "word": "יִשְׂרָאֵל",
+                                        "gloss": "Israel",
+                                        "description": "",
+                                        "arguments": ""
+                                      }
+                                    }
+                                  ],
+                                  "content": {
+                                    "fragment": "ConstructChain",
+                                    "description": "",
+                                    "arguments": ""
+                                  }
+                                }
+                              ],
+                              "content": {
+                                "fragment": "Object",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "PrepositionalPhrase",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Adverbial",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "noun",
+                                "word": "חַסְדּ",
+                                "gloss": "loyalty",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            },
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "noun",
+                                "word": "וֹ",
+                                "gloss": "him",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "ConstructChain",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "conjunction",
+                                "word": "וֶ",
+                                "gloss": "and",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "Conjunction",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "noun",
+                                "word": "אֱמוּנָת",
+                                "gloss": "faithfulness",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            },
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "noun",
+                                "word": "וֹ",
+                                "gloss": "him",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "ConstructChain",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Object",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Predicate",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "v. 3",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "article",
+                                "word": "הָ",
+                                "gloss": "the",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            },
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "noun",
+                                "word": "אָרֶץ",
+                                "gloss": "earth",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            },
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "quantifier",
+                                "word": "כָּל",
+                                "gloss": "all",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "Nominal",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Vocative",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "verb",
+                        "word": "הָרִיעוּ",
+                        "gloss": "shout",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Predicate",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "v. 4",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "article",
+                            "word": "הַ",
+                            "gloss": "the",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "noun",
+                            "word": "יָּם",
+                            "gloss": "sea",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Nominal",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "verb",
+                        "word": "יִרְעַם",
+                        "gloss": "roar",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Predicate",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "v. 7",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "noun",
+                        "word": "תֵּבֵל",
+                        "gloss": "land",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "conjunction",
+                            "word": "וְ",
+                            "gloss": "and",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Conjunction",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "verb-participle",
+                            "word": "יֹשְׁבֵי",
+                            "gloss": "those who dwell",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Nominal",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "noun",
+                            "word": "פָּעֳל",
+                            "gloss": "work",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "suffix-pronoun",
+                            "word": "וֹ",
+                            "gloss": "him",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "ConstructChain",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "verb",
+                        "word": "",
+                        "gloss": "is",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "noun",
+                            "word": "הוֹד",
+                            "gloss": "glory >> glorious",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Complement",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Predicate",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "v. 3",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "noun",
+                        "word": "יְהוָה",
+                        "gloss": "YHWH",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "verb",
+                        "word": "",
+                        "gloss": "is",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "adjective",
+                            "word": "חַנּוּן",
+                            "gloss": "merciful",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "conjunction",
+                            "word": "וְ",
+                            "gloss": "and",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "adjective",
+                            "word": "רַחוּם",
+                            "gloss": "compassionate",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Complement",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Predicate",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "noun",
+                        "word": "איש",
+                        "gloss": "man",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "adjective",
+                        "word": "טוב",
+                        "gloss": "good",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "article",
+                        "word": "ה",
+                        "gloss": "the",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "noun",
+                        "word": "איש",
+                        "gloss": "man",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "article",
+                            "word": "ה",
+                            "gloss": "the",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [],
+                          "content": {
+                            "pos": "adjective",
+                            "word": "טוב",
+                            "gloss": "good",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Adjectival",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "",
+            "arguments": ""
+          }
+        },
+        {
+          "level": 2,
+          "children": [
+            {
+              "level": 4,
+              "children": [
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [],
+                      "content": {
+                        "pos": "noun",
+                        "word": "מִזְמוֹר",
+                        "gloss": "a psalm",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    },
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [
+                                {
+                                  "level": 14,
+                                  "children": [],
+                                  "content": {
+                                    "pos": "preposition",
+                                    "word": "לְ",
+                                    "gloss": "by",
+                                    "description": "",
+                                    "arguments": ""
+                                  }
+                                }
+                              ],
+                              "content": {
+                                "fragment": "Preposition",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            },
+                            {
+                              "level": 12,
+                              "children": [
+                                {
+                                  "level": 14,
+                                  "children": [],
+                                  "content": {
+                                    "pos": "noun",
+                                    "word": "דָוִד",
+                                    "gloss": "David",
+                                    "description": "",
+                                    "arguments": ""
+                                  }
+                                }
+                              ],
+                              "content": {
+                                "fragment": "Object",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "PrepositionalPhrase",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "Adjectival",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Subject",
+                    "description": "",
+                    "arguments": ""
+                  }
+                },
+                {
+                  "level": 6,
+                  "children": [
+                    {
+                      "level": 8,
+                      "children": [
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [],
+                              "content": {
+                                "pos": "preposition",
+                                "word": "בְּ",
+                                "gloss": "when",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "Preposition",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        },
+                        {
+                          "level": 10,
+                          "children": [
+                            {
+                              "level": 12,
+                              "children": [
+                                {
+                                  "level": 14,
+                                  "children": [],
+                                  "content": {
+                                    "fragment": "Subject",
+                                    "description": "",
+                                    "arguments": ""
+                                  }
+                                },
+                                {
+                                  "level": 14,
+                                  "children": [
+                                    {
+                                      "level": 16,
+                                      "children": [
+                                        {
+                                          "level": 18,
+                                          "children": [],
+                                          "content": {
+                                            "pos": "verb-infinitive",
+                                            "word": "בָרְח",
+                                            "gloss": "fled",
+                                            "description": "",
+                                            "arguments": ""
+                                          }
+                                        },
+                                        {
+                                          "level": 18,
+                                          "children": [],
+                                          "content": {
+                                            "pos": "suffix-pronoun",
+                                            "word": "וֹ",
+                                            "gloss": "he",
+                                            "description": "",
+                                            "arguments": ""
+                                          }
+                                        }
+                                      ],
+                                      "content": {
+                                        "fragment": "ConstructChain",
+                                        "description": "",
+                                        "arguments": ""
+                                      }
+                                    },
+                                    {
+                                      "level": 16,
+                                      "children": [
+                                        {
+                                          "level": 18,
+                                          "children": [
+                                            {
+                                              "level": 20,
+                                              "children": [
+                                                {
+                                                  "level": 22,
+                                                  "children": [],
+                                                  "content": {
+                                                    "pos": "preposition",
+                                                    "word": "מִ",
+                                                    "gloss": "from",
+                                                    "description": "",
+                                                    "arguments": ""
+                                                  }
+                                                }
+                                              ],
+                                              "content": {
+                                                "fragment": "Preposition",
+                                                "description": "",
+                                                "arguments": ""
+                                              }
+                                            },
+                                            {
+                                              "level": 20,
+                                              "children": [
+                                                {
+                                                  "level": 22,
+                                                  "children": [
+                                                    {
+                                                      "level": 24,
+                                                      "children": [],
+                                                      "content": {
+                                                        "pos": "noun",
+                                                        "word": "פְּנֵי",
+                                                        "gloss": "the presence",
+                                                        "description": "",
+                                                        "arguments": ""
+                                                      }
+                                                    },
+                                                    {
+                                                      "level": 24,
+                                                      "children": [
+                                                        {
+                                                          "level": 26,
+                                                          "children": [],
+                                                          "content": {
+                                                            "pos": "noun",
+                                                            "word": "אַבְשָׁלוֹם",
+                                                            "gloss": "Absalom",
+                                                            "description": "",
+                                                            "arguments": ""
+                                                          }
+                                                        },
+                                                        {
+                                                          "level": 26,
+                                                          "children": [
+                                                            {
+                                                              "level": 28,
+                                                              "children": [
+                                                                {
+                                                                  "level": 30,
+                                                                  "children": [],
+                                                                  "content": {
+                                                                    "pos": "noun",
+                                                                    "word": "בְּנ",
+                                                                    "gloss": "son",
+                                                                    "description": "",
+                                                                    "arguments": ""
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "level": 30,
+                                                                  "children": [],
+                                                                  "content": {
+                                                                    "pos": "suffix-pronoun",
+                                                                    "word": "וֹ",
+                                                                    "gloss": "him",
+                                                                    "description": "",
+                                                                    "arguments": ""
+                                                                  }
+                                                                }
+                                                              ],
+                                                              "content": {
+                                                                "fragment": "ConstructChain",
+                                                                "description": "",
+                                                                "arguments": ""
+                                                              }
+                                                            }
+                                                          ],
+                                                          "content": {
+                                                            "fragment": "Nominal",
+                                                            "description": "",
+                                                            "arguments": ""
+                                                          }
+                                                        }
+                                                      ],
+                                                      "content": {
+                                                        "fragment": "Apposition",
+                                                        "description": "",
+                                                        "arguments": ""
+                                                      }
+                                                    }
+                                                  ],
+                                                  "content": {
+                                                    "fragment": "ConstructChain",
+                                                    "description": "",
+                                                    "arguments": ""
+                                                  }
+                                                }
+                                              ],
+                                              "content": {
+                                                "fragment": "Object",
+                                                "description": "",
+                                                "arguments": ""
+                                              }
+                                            }
+                                          ],
+                                          "content": {
+                                            "fragment": "PrepositionalPhrase",
+                                            "description": "",
+                                            "arguments": ""
+                                          }
+                                        }
+                                      ],
+                                      "content": {
+                                        "fragment": "Adverbial",
+                                        "description": "",
+                                        "arguments": ""
+                                      }
+                                    }
+                                  ],
+                                  "content": {
+                                    "fragment": "Predicate",
+                                    "description": "",
+                                    "arguments": ""
+                                  }
+                                }
+                              ],
+                              "content": {
+                                "fragment": "Clause",
+                                "description": "",
+                                "arguments": ""
+                              }
+                            }
+                          ],
+                          "content": {
+                            "fragment": "Object",
+                            "description": "",
+                            "arguments": ""
+                          }
+                        }
+                      ],
+                      "content": {
+                        "fragment": "PrepositionalPhrase",
+                        "description": "",
+                        "arguments": ""
+                      }
+                    }
+                  ],
+                  "content": {
+                    "fragment": "Complement",
+                    "description": "",
+                    "arguments": ""
+                  }
+                }
+              ],
+              "content": {
+                "fragment": "Clause",
+                "description": "",
+                "arguments": ""
+              }
+            }
+          ],
+          "content": {
+            "fragment": "Fragment",
+            "description": "moved מִפְּנֵי אַבְשָׁלוֹם בְּנ to adverbially modify ברח instead of adjectivally modifying the object of the preposition",
+            "arguments": ""
+          }
+        }

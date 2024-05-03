@@ -170,7 +170,22 @@ const parserMap: Record<string, (node: GrammarNode) => GraphicalNode> = {
 export function parse(node: GrammarNode): GraphicalNode {
   try {
     for (let i = 0; i < node.children.length; i++) {
-      node.children[i] = parse(node.children[i]);
+      if (
+        node.content &&
+        node.children[i].content &&
+        getKeyFromNode(node) === adjectivalKey &&
+        getKeyFromNode(node.children[i]) === nominalKey
+      ) {
+        node.children[i] = parse({
+          ...node.children[i],
+          content: {
+            ...node.children[i].content,
+            message: 'adjectival > nominal',
+          },
+        } as GrammarNode);
+      } else {
+        node.children[i] = parse(node.children[i]);
+      }
     }
 
     if (node.content === null) {
