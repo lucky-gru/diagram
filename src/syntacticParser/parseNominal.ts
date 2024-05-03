@@ -239,8 +239,6 @@ export function parseNominal(node: GrammarNode): GraphicalNode {
     }
   }
 
-  console.log(node);
-
   return {
     ...node,
     drawUnit: drawNominal({

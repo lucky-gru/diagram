@@ -371,8 +371,7 @@ export function shakingTreeForEmptyFragment(node: GrammarNode): GrammarNode {
 }
 
 export function shakingTree(root: GrammarNode): GrammarNode {
-  const db = shakingTreeForConjunction(shakingTreeForEmptyFragment(root));
-
-  console.log(db);
-  return shakingTreeForDuplication(db);
+  return shakingTreeForDuplication(
+    shakingTreeForConjunction(shakingTreeForEmptyFragment(root)),
+  );
 }
